@@ -1,0 +1,47 @@
+//
+//  PrefixHeader.pch
+//  VTG
+//
+//  Created by Tran Van Han on 10/5/15.
+//  Copyright (c) 2015 FPTSOFTWARE. All rights reserved.
+//
+
+#ifndef VTG_PrefixHeader_pch
+#define VTG_PrefixHeader_pch
+#import "JSONKit.h"
+#import "Reachability.h"
+#import "VTGHeader.h"
+#import "AFNetworking.h"
+#import "VTGUser.h"
+#import "VTGPendingQueue.h"
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifndef TARGET_OS_IOS
+#define TARGET_OS_IOS TARGET_OS_IPHONE
+#endif
+#ifndef TARGET_OS_WATCH
+#define TARGET_OS_WATCH 0
+#endif
+
+
+
+#ifdef DEBUG
+#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define DLog(...)
+#endif
+
+//[FPT - F11Z79SCP2-176] [START]
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+//[FPT - F11Z79SCP2-176] [END]
+
+// ALog always displays output regardless of the DEBUG alarm
+#define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+
+// ILog always displays output regardless of the alarm
+#define ILog(fmt, ...) NSLog((@"" fmt), ##__VA_ARGS__);
+#endif
